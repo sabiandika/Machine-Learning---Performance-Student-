@@ -32,9 +32,14 @@ warnings.filterwarnings("ignore")
 
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parent
-MAT_PATH = ROOT / "student-mat.csv"
-POR_PATH = ROOT / "student-por.csv"
-ARTIFACT_PATH = ROOT / "model_artifacts" / "student_performance_rf.joblib"
+DATA_DIR = BASE / "data"
+MAT_PATH = DATA_DIR / "student-mat.csv" if (DATA_DIR / "student-mat.csv").exists() else ROOT / "student-mat.csv"
+POR_PATH = DATA_DIR / "student-por.csv" if (DATA_DIR / "student-por.csv").exists() else ROOT / "student-por.csv"
+ARTIFACT_PATH = (
+    BASE / "model_artifacts" / "student_performance_rf.joblib"
+    if (BASE / "model_artifacts" / "student_performance_rf.joblib").exists()
+    else ROOT / "model_artifacts" / "student_performance_rf.joblib"
+)
 RANDOM_STATE = 42
 
 WARNA_AMAN = "#2a9d8f"
